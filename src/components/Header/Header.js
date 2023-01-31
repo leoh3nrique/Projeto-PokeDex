@@ -1,5 +1,5 @@
 import { StyledImage } from "./styled"
-import imageHeader from "../assets/imageHeader.svg"
+import imageHeader from "../../assets/imageHeader.svg"
 import { goToHome, goToPokedex } from "../../router/cordinator"
 import { useNavigate } from "react-router-dom"
 

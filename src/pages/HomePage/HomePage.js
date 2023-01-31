@@ -1,21 +1,38 @@
 import { useContext } from "react";
 import Card from "../../components/Card/Card";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { StyledContainer } from "./styled";
+import { MainContainer, StyledContainer } from "./styled";
 import Header from "../../components/Header/Header";
 
 const HomePage = () => {
   const context = useContext(GlobalContext);
-  const { pokemons } = context;
+  const { pokemons, pokedex } = context;
+
+  const filtrarLista = () =>
+    pokemons.filter((pokemonInList) =>
+        !pokedex.find((pokemonInPokedex) => pokemonInList.name === pokemonInPokedex.name
+        )
+    );
+
 
   return (
     <>
         <Header />
+
+      <MainContainer>
       <StyledContainer>
-        {pokemons.map((elem, index) => {
-          return <Card key={index} name={elem.name} url={elem.url} />;
-        })}
+      {filtrarLista().map((pokemon)=>{
+        return(
+          <Card
+            key={pokemon.url}
+            url={pokemon.url}
+          />
+        )
+      })}
       </StyledContainer>
+      </MainContainer>
+        
+        
     </>
   );
 };

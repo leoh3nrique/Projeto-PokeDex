@@ -1,51 +1,59 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { GlobalContext } from "./GlobalContext"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../constants/url";
+import { GlobalContext } from "./GlobalContext";
 
-const GlobalState = ({children}) =>{
-    const [pokemons, setPokemons] = useState([])
-    const [pokedex, setPokedex] = useState([])
+const GlobalState = ({ children }) => {
+  const [pokemons, setPokemons] = useState([]);
+  const [pokedex, setPokedex] = useState([]);
+  const [detailsPokemon, setDetaisPokemon] = useState([]);
 
-    useEffect(()=>{
-        getPokemons()
-    },[])
+  useEffect(() => {
+    getPokemons();
+  }, []);
 
+  const getPokemons = async () => {
+    try {
+    const response = await axios.get(`${BASE_URL}`);
+     setPokemons(response.data.results)
 
-    const getPokemons = async () =>{
-        try{
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
-            setPokemons(response.data.results)
-        }catch(error){
-            console.log("erro",error.response)
-        }
+    } catch (error) {
+      console.log("erro", error.response);
     }
+  };
 
+  
 
-    const addToPokedex = (pokemon) =>{
-        const findInPokedex = pokedex.find((elem)=>{
-            return elem.id === pokemon.id
-        })
-        if(!findInPokedex){
-            const copyPokedex = [...pokedex, pokemon]
-            setPokedex(copyPokedex)
+  const addToPokedex = (pokemon) => {
+    const isAlreadyOnPokedex = pokedex.find(
+      (pokemonInPokedex) => pokemonInPokedex.name === pokemon.name
+    );
 
-
-        }else{
-            console.log("ja esta adicionado")
-        }
-
+    if (!isAlreadyOnPokedex) {
+      const newPokedex = [...pokedex, pokemon];
+      setPokedex(newPokedex);
     }
+   
+  };
 
-    const data = {
-        pokemons,
-        pokedex,
-        addToPokedex
-    }
+  
 
+  const details = (pokemon, navigate) => {
+    setDetaisPokemon(pokemon);
+    navigate("/details");
+  };
 
+  const data = {
+    pokemons,
+    pokedex,
+    addToPokedex,
+    details,
+    detailsPokemon,
+  };
 
+  return (
+    <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
+  );
+};
 
-    return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
-}
-
-export default GlobalState
+export default GlobalState;
