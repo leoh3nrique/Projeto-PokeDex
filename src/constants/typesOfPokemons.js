@@ -12,24 +12,24 @@ export const typesOfPokemons = (type) =>{
 
     switch(type){
         case "poison":
-            return <img src={poison}/>
+            return <img src={poison} alt="poison"/>
     
         case "grass":
-            return <img src={grass}/>
+            return <img src={grass} alt="grass"/>
             
         case "fire":
-            return <img src={fire}/>
+            return <img src={fire} alt="fire"/>
         case "water":
-            return <img src={water}/>
+            return <img src={water} alt="water"/>
     
         case "bug":
-            return <img src={bug}/>
+            return <img src={bug} alt="bug"/>
 
         case "flying":
-            return <img src={flying}/>
+            return <img src={flying} alt="flying"/>
               
         case "normal":
-            return <img src={normal}/>
+            return <img src={normal} alt="normal"/>
 
         default:
             break       

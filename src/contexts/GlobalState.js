@@ -22,7 +22,6 @@ const GlobalState = ({ children }) => {
     }
   };
 
-  
 
   const addToPokedex = (pokemon) => {
     const isAlreadyOnPokedex = pokedex.find(
@@ -36,6 +35,14 @@ const GlobalState = ({ children }) => {
    
   };
 
+  const removeFromPokedex = (pokemon) =>{
+    const newPokedex = pokedex.filter(
+      (pokemonInPokedex) => pokemonInPokedex.name !== pokemon.name
+    );
+
+    setPokedex(newPokedex);
+  }
+
   
 
   const details = (pokemon, navigate) => {
@@ -47,6 +54,7 @@ const GlobalState = ({ children }) => {
     pokemons,
     pokedex,
     addToPokedex,
+    removeFromPokedex,
     details,
     detailsPokemon,
   };

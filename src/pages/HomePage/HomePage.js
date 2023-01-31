@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Card from "../../components/Card/Card";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { MainContainer, StyledContainer } from "./styled";
+import { MainContainer, StyledContainer, StyledH1 } from "./styled";
 import Header from "../../components/Header/Header";
 
 const HomePage = () => {
@@ -17,19 +17,20 @@ const HomePage = () => {
 
   return (
     <>
-        <Header />
-
+      <Header />
       <MainContainer>
-      <StyledContainer>
-      {filtrarLista().map((pokemon)=>{
-        return(
-          <Card
-            key={pokemon.url}
-            url={pokemon.url}
-          />
-        )
-      })}
-      </StyledContainer>
+        <StyledH1>Todos Pokémons</StyledH1>
+
+        <StyledContainer>
+        {filtrarLista().map((pokemon)=>{
+          return(
+            <Card
+              key={pokemon.url}
+              url={pokemon.url}
+            />
+          )
+        })}
+        </StyledContainer>
       </MainContainer>
         
         
