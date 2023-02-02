@@ -18,8 +18,6 @@ export const ContainerPokedex = styled.div`
 `
 
 
-
-
 export const StyledHeaderAnimated = styled.h1`
     align-self: flex-start;
     margin: 40px 68px;

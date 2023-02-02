@@ -1,33 +1,35 @@
 import Header from "../../components/Header/Header";
-import { useContext} from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import Card from "../../components/Card/Card";
-import { BASE_URL } from "../../constants/url";
-import { ContainerPokedex, StyledHeaderAnimated, StyledPokedex } from "./styled";
-import { useLocation } from "react-router-dom";
+import {
+  ContainerPokedex,
+  StyledHeaderAnimated,
+  StyledPokedex,
+} from "./styled";
+import { useLocation, useNavigate } from "react-router-dom";
+import CatchPokemon from "../../components/CatchPokemon/CatchPokemon";
+import { PokedexCard } from "./components/PokedexCard";
 
+const Pokedex = () => {
+  const context = useContext(GlobalContext);
+  const { pokedex, isVisible, details, removeFromPokedex } = context;
+  const location = useLocation();
+  const navigate = useNavigate();
 
-const Pokedex = () =>{
-    const context = useContext(GlobalContext)
-    const {pokedex} = context
-    const location = useLocation()
-    
-    return (
-        <>
-            <Header/>
-            <ContainerPokedex>
-                {location.pathname === "/pokedex" && <StyledHeaderAnimated a = {1}>Meus Pokémons</StyledHeaderAnimated>}
-                <StyledPokedex>
-                    {pokedex.map((elem, index)=>{
-                        return <Card key={index} url={`${BASE_URL}/${elem.name}`}/>
-                    })}
-                    
-
-                </StyledPokedex>
-            </ContainerPokedex>
-
-        </>
-
-    )
-}
+  
+  return (
+    <>
+      <Header />
+      <ContainerPokedex>
+        {isVisible && <CatchPokemon />}
+        {location.pathname === "/pokedex" && (
+          <StyledHeaderAnimated>Meus Pokémons</StyledHeaderAnimated>
+        )}
+        <StyledPokedex>
+          <PokedexCard />
+        </StyledPokedex>
+      </ContainerPokedex>
+    </>
+  );
+};
 export default Pokedex;

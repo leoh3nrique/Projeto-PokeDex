@@ -17,30 +17,26 @@ import {
   StyledBtnRemove,
 } from "./styled";
 import backgroundImage from "../../assets/backgroundImagePokemon.svg";
-import { useColorBackground } from "../../hooks/useColorBackground";
 import { typesOfPokemons } from "../../constants/typesOfPokemons";
 import { StyledH1 } from "../HomePage/styled";
 
 const Details = () => {
   const context = useContext(GlobalContext);
   const { detailsPokemon } = context;
-  const { color } = useColorBackground(detailsPokemon.types[0]);
-  console.log(detailsPokemon.MainImage);
 
   return (
     <>
-      <Header />
+      <Header/>
       <StyledBtnRemove>Remove</StyledBtnRemove>
       <ContainerDetails backgroundImage={backgroundImage}>
         <StyledH1>Detalhes</StyledH1>
-        <ContainerDetailsPokemon backgroundColor={color}>
-            
+        <ContainerDetailsPokemon backgroundColor={detailsPokemon.background}>
           <ContainerImages>
             <FrontImage>
-              <img src={detailsPokemon.sprites.front_default} />
+              <img src={detailsPokemon.sprites.front_default} alt="Front of pokemon " />
             </FrontImage>
             <BackImage>
-              <img src={detailsPokemon.sprites.back_default} />
+              <img src={detailsPokemon.sprites.back_default} alt="Back of pokemon" />
             </BackImage>
           </ContainerImages>
           <ContainerBaseStats>
@@ -62,16 +58,15 @@ const Details = () => {
               <p className="pokemonId">#{detailsPokemon.id}</p>
               <p className="pokemonName">{detailsPokemon.name}</p>
 
-              {detailsPokemon.types.map((elem) => {
-                return typesOfPokemons(elem);
+              {detailsPokemon.types.map((elem,index) => {
+                return typesOfPokemons(elem, index);
               })}
             </BasicStats>
             <MainImage>
-              <img src={detailsPokemon.mainImage} />
+              <img src={detailsPokemon.mainImage} alt="Main Pokemon" />
             </MainImage>
             <MovesStats>
               <h3>Moves</h3>
-
               <p>{detailsPokemon.moves[0].move.name}</p>
               <p>{detailsPokemon.moves[1].move.name}</p>
               <p>{detailsPokemon.moves[2].move.name}</p>

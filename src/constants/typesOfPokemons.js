@@ -7,29 +7,29 @@ import normal from "../assets/type/normal.svg"
 import water from "../assets/type/water.svg"
 
 
-export const typesOfPokemons = (type) =>{
+export const typesOfPokemons = (type, index) =>{
 
 
     switch(type){
         case "poison":
-            return <img src={poison} alt="poison"/>
+            return <img key={index} src={poison} alt="poison"/>
     
         case "grass":
-            return <img src={grass} alt="grass"/>
+            return <img key={index} src={grass} alt="grass"/>
             
         case "fire":
-            return <img src={fire} alt="fire"/>
+            return <img key={index} src={fire} alt="fire"/>
         case "water":
-            return <img src={water} alt="water"/>
+            return <img key={index} src={water} alt="water"/>
     
         case "bug":
-            return <img src={bug} alt="bug"/>
+            return <img key={index} src={bug} alt="bug"/>
 
         case "flying":
-            return <img src={flying} alt="flying"/>
+            return <img key={index} src={flying} alt="flying"/>
               
         case "normal":
-            return <img src={normal} alt="normal"/>
+            return <img key={index} src={normal} alt="normal"/>
 
         default:
             break       

@@ -11,16 +11,17 @@ import {
   ContainerBtn,
   StyledBtnDetails,
   StyledBtnCapture,
-  StyledBtnRemove
+  StyledBtnRemove,
 } from "./styled";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { typesOfPokemons } from "../../constants/typesOfPokemons";
 import backgroundImage from "../../assets/backgroundImagePokemon.svg";
-import { useColorBackground } from "../../hooks/useColorBackground";
+import CatchPokemon from "../CatchPokemon/CatchPokemon";
+import { ColorBackground } from "../../constants/colorBackgrounds";
 
-const Card = ({ url }) => {
+const Card = ({ url, index }) => {
   useEffect(() => {
     fetchPokemon();
   }, []);
@@ -47,12 +48,14 @@ const Card = ({ url }) => {
         }
       }
       copiaPokemon.push({
-        ...response.data,
         name: response.data.name,
         id: response.data.id,
         types: arrayTypes,
+        url: url,
         images: response.data.sprites,
-        mainImage: response.data.sprites.other.home.front_default,
+        mainImage:response.data.sprites.other["official-artwork"].front_default,
+        backgroundColor: ColorBackground(response.data.types[0].type.name)
+        
       });
       setPokemon(copiaPokemon);
     } catch (error) {
@@ -60,24 +63,20 @@ const Card = ({ url }) => {
     }
   };
 
-
-
   return (
     <>
       {pokemon.map((elem) => {
-       const {color} = useColorBackground(elem.types[0])
         return (
-          <StyledCard key={elem.id} background={color}>
+          <StyledCard key={elem.id} background = {elem.backgroundColor} index={index}>
             <ContainerInfo>
-
               <StyledInfo>
                 <StatsCard>
                   <p>#{elem.id}</p>
                   <p>{elem.name}</p>
                 </StatsCard>
                 <StatsType>
-                  {elem.types.map((type) => {
-                    return typesOfPokemons(type);
+                  {elem.types.map((type,index) => {
+                    return typesOfPokemons(type, index);
                   })}
                 </StatsType>
               </StyledInfo>
@@ -85,16 +84,21 @@ const Card = ({ url }) => {
               <ContainerImage backgroundImage={backgroundImage}>
                 <StyledImage src={elem.mainImage} />
               </ContainerImage>
-
             </ContainerInfo>
 
             <ContainerBtn>
-              <StyledBtnDetails onClick={() => details(elem, navigate)}>Detalhes</StyledBtnDetails>
+              <StyledBtnDetails onClick={() => details(elem, navigate)}>
+                Detalhes
+              </StyledBtnDetails>
 
               {location.pathname === "/" ? (
-                <StyledBtnCapture onClick={() => addToPokedex(elem)}>Capturar!</StyledBtnCapture>
+                <StyledBtnCapture onClick={() => addToPokedex(elem)}>
+                  Capturar!
+                </StyledBtnCapture>
               ) : (
-                <StyledBtnRemove onClick={() => removeFromPokedex(elem)}>Excluir</StyledBtnRemove>
+                <StyledBtnRemove onClick={() => removeFromPokedex(elem)}>
+                  Excluir
+                </StyledBtnRemove>
               )}
             </ContainerBtn>
           </StyledCard>

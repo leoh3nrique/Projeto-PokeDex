@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledBtnRemove = styled.button`
   position: absolute;
@@ -13,6 +13,8 @@ export const StyledBtnRemove = styled.button`
   cursor: pointer;
 `;
 
+
+
 export const ContainerDetails = styled.div`
   width: 100%;
   height: 57vw;
@@ -22,7 +24,18 @@ export const ContainerDetails = styled.div`
   background-position: center;
   background-size: 1000px;
   border:.001px solid #5e5e5e;
-`;
+  `;
+
+  const animation = keyframes`
+    from{
+      transform: scale(0.3, 0.3);
+
+    }
+    to{
+      transform:translate(10px, 0%);
+    }
+  
+  `
 
 export const ContainerDetailsPokemon = styled.div`
   width: 1400px;
@@ -32,6 +45,9 @@ export const ContainerDetailsPokemon = styled.div`
   display: flex;
   gap: 10px;
   border-radius: 24px;
+  position: relative;
+  animation:${animation} .3s;
+
 `;
 
 export const ContainerImages = styled.div`
