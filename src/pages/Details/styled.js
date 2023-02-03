@@ -4,8 +4,8 @@ export const StyledBtnRemove = styled.button`
   position: absolute;
   left: 74vw;
   top: 48px;
-  width: 226px;
-  height: 57px;
+  width: 15vw;
+  height: 3.7vw;
   border: none;
   border-radius: 8px;
   color: white;
@@ -24,6 +24,9 @@ export const ContainerDetails = styled.div`
   background-position: center;
   background-size: 1000px;
   border:.001px solid #5e5e5e;
+  @media (min-width: 320px) and (max-width: 480px){
+    height:323vw;
+  }
   `;
 
   const animation = keyframes`
@@ -38,8 +41,8 @@ export const ContainerDetails = styled.div`
   `
 
 export const ContainerDetailsPokemon = styled.div`
-  width: 1400px;
-  height: 665px;
+  width: 95%;
+  height: 93vh;
   background-color: ${(props) => props.backgroundColor};
   margin: 0 auto;
   display: flex;
@@ -47,17 +50,24 @@ export const ContainerDetailsPokemon = styled.div`
   border-radius: 24px;
   position: relative;
   animation:${animation} .3s;
+  @media (min-width: 320px) and (max-width: 480px){
+    flex-direction: column;
+    height: 90%;
+  }
 
 `;
 
 export const ContainerImages = styled.div`
-  height: 613px;
+  height: 95vw;
   margin: 20px 25px;
+  @media (min-width: 320px) and (max-width: 480px){
+    margin-top: 30vh;
+  }
 `;
 
 export const FrontImage = styled.div`
-  width: 280px;
-  height: 280px;
+  width: 18.7vw;
+  height: 18.7vw;
   background-color: white;
   border-radius: 12px;
   display: flex;
@@ -66,10 +76,14 @@ export const FrontImage = styled.div`
   img {
     width: 180px;
   }
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 100%;
+    height: 50%;
+  }
 `;
 export const BackImage = styled.div`
-  width: 280px;
-  height: 280px;
+  width:18.7vw;
+  height:18.7vw;
   background-color: white;
   border-radius: 8px;
   display: flex;
@@ -79,11 +93,16 @@ export const BackImage = styled.div`
   img {
     width: 180px;
   }
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 100%;
+    height: 50%;
+    margin-top:20px ;
+  }
 `;
 
 export const ContainerBaseStats = styled.div`
-  width: 343px;
-  height: 613px;
+  width: 23vw;
+  height: 41vw;
   background-color: white;
   margin: 20px 25px;
   border-radius: 12px;
@@ -104,6 +123,10 @@ export const ContainerBaseStats = styled.div`
   .baseStat {
     text-align: center;
   }
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 85%;
+    height: 47.5vh;
+  }
 `;
 
 export const DivPai = styled.div`
@@ -117,17 +140,20 @@ export const DivFilha = styled.div`
 
 export const ContainerOtherStats = styled.div`
   width: 50%;
-  height: 613px;
+  height: 41vw;
   margin: 10px;
-
   background-image: url(${(props) => `${props.backgroundImage}`});
   background-repeat: no-repeat;
   background-position: center;
   background-size: 900px;
+  @media (min-width: 320px) and (max-width: 480px){
+    width:85%;
+    margin-left:5vw;
+  }
 `;
 export const BasicStats = styled.div`
-  width: 350px;
-  height: 150px;
+  width: 23vw;
+  height: 10vw;
   .pokemonId {
     color: white;
     font-family: "Inter";
@@ -143,6 +169,10 @@ export const BasicStats = styled.div`
     font-size: 48px;
     margin-bottom: 15px;
   }
+  @media (min-width: 320px) and (max-width: 480px){
+    position: absolute;
+    top: 0vh;
+  }
 `;
 
 export const MainImage = styled.div`
@@ -152,11 +182,17 @@ export const MainImage = styled.div`
   position: absolute;
   right: 50px;
   top: 250px;
+  @media (min-width: 320px) and (max-width: 480px){
+    top: 0vh;
+    right: 1.5vw;
+    img{
+      width: 35vw;
+    }
+  }
 `;
 export const MovesStats = styled.div`
-  border: 1px solid white;
-  width: 292px;
-  height: 463px;
+  width: 20vw;
+  height: 30.9vw;
   background-color: white;
   border-radius: 14px;
   padding: 5px;
@@ -168,5 +204,9 @@ export const MovesStats = styled.div`
     margin: 10px;
     border-radius: 15px;
     text-align: center;
+  }
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 100%;
+    height: 40vh;
   }
 `;

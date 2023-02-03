@@ -9,6 +9,9 @@ export const DivVazia = styled.div`
     z-index: 999;
     top: 0vh;
     cursor: pointer;
+  @media (min-width: 320px) and (max-width: 480px){
+    
+  }
     
    
 `
@@ -26,4 +29,12 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+@media (min-width: 320px) and (max-width: 480px){
+    width: 60vw   ;
+    height: 20vh;
+    left: 20vw;
+    top: 34vh;
+  }
+
+
 `

@@ -1,10 +1,20 @@
 import styled, { keyframes } from "styled-components";
+import {device} from "../../constants/sizeOfDevices"
 
 export const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 16px;
   grid-row-gap: 45px;
+
+  @media (max-width: 480px) {
+    display: flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
 `;
 
 const animation = keyframes`
@@ -21,6 +31,19 @@ const animation = keyframes`
 
 `;
 
+const animationMobile = keyframes`
+  from{
+        left: -30vw;
+        display: none;
+        text-decoration: underline;
+        transform: scale(0.8 , 1);
+    }
+    to{
+        left: 8vw;
+        color: white;
+    }
+`
+
 export const StyledH1 = styled.h1`
   align-self: flex-start;
   margin: 40px 68px;
@@ -32,7 +55,17 @@ export const StyledH1 = styled.h1`
   line-height: 72px;
   position: relative;
   animation: ${animation} 0.3s;
+
+  @media (max-width: 480px) {
+    font-size: 30px;
+    animation: ${animationMobile} 0.3s;
+    left: 8vw;
+
+  }
+
+
 `;
+
 
 export const MainContainer = styled.div`
   background-color: #5e5e5e;
@@ -41,4 +74,13 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+
+  @media (max-width: 480px) and (min-width: 320px) {
+    width: 100vw;
+    margin: 0 auto;
+
+  }
+ 
 `;
+

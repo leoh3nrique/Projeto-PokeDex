@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Card from "../../components/Card/Card";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { MainContainer, StyledContainer, StyledH1 } from "./styled";
+import { MainContainer, StyledContainer, StyledH1, StyledMain } from "./styled";
 import Header from "../../components/Header/Header";
 import CatchPokemon from "../../components/CatchPokemon/CatchPokemon";
 

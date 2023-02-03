@@ -15,7 +15,7 @@ import {
 } from "./styled";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { typesOfPokemons } from "../../constants/typesOfPokemons";
 import backgroundImage from "../../assets/backgroundImagePokemon.svg";
 import CatchPokemon from "../CatchPokemon/CatchPokemon";
@@ -31,6 +31,7 @@ const Card = ({ url, index }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const params = useParams()
 
   const [pokemon, setPokemon] = useState([]);
 
@@ -63,6 +64,7 @@ const Card = ({ url, index }) => {
     }
   };
 
+  console.log(pokemon)
   return (
     <>
       {pokemon.map((elem) => {
@@ -87,7 +89,7 @@ const Card = ({ url, index }) => {
             </ContainerInfo>
 
             <ContainerBtn>
-              <StyledBtnDetails onClick={() => details(elem, navigate)}>
+              <StyledBtnDetails onClick={() => details(elem, navigate, params)}>
                 Detalhes
               </StyledBtnDetails>
 

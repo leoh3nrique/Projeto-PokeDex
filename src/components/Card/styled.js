@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.div`
-  width: 440px;
+  width: 29.4vw;
   height: 210px;
   background-color: ${(props) => props.background};
   display: flex;
   flex-direction: column;
   border-radius: 12px;
   padding: 4px;
+  @media (min-width: 320px) and (max-width: 480px){
+    width:90%;
+    
+  }
 `;
 
 export const ContainerInfo = styled.div`
@@ -25,16 +29,24 @@ export const ContainerImage = styled.div`
   background-position: center;
   background-position: absolute;
   width: 50%;
+
 `;
 
 export const StyledImage = styled.img`
-  width: 193px;
+  width: 13vw;
   position: relative;
   top: -7.8vh;
   right: -0.6vw;
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 40vw;
+    
+    
+  }
+
+
 `;
 export const StatsCard = styled.div`
-  margin: 18px 8px;
+  margin: 1.2vw 0.5vw;
   p {
     color: white;
     font-family: "Inter";
@@ -67,20 +79,29 @@ export const StyledBtnDetails = styled.button`
 `;
 export const StyledBtnCapture = styled.button`
   background-color: white;
-  width: 146px;
-  height: 38px;
+  width: 9.7vw;
+  height: 2.5vw;
   cursor: pointer;
   font-size: 16px;
   border: none;
   border-radius: 10px;
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 30vw;
+    height: 5vh;
+  }
+  
 `;
 
 export const StyledBtnRemove = styled.button`
-  width: 146px;
-  height: 38px;
+  background-color: #ff6262; 
+  width: 9.7vw;
+  height: 2.5vw;
   cursor: pointer;
-  border-radius: 10px;
+  font-size: 16px;
   border: none;
-  color: white;
-  background-color: #ff6262; ;
+  border-radius: 10px;
+  @media (min-width: 320px) and (max-width: 480px){
+    width: 30vw;
+    height: 5vh;
+  }
 `;

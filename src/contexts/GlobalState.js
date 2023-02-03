@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../constants/url";
+import { goToDetails } from "../router/cordinator";
 import { GlobalContext } from "./GlobalContext";
 
 const GlobalState = ({ children }) => {
   const [pokemons, setPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [detailsPokemon, setDetaisPokemon] = useState([]);
+  const [detailsPokemon, setDetailsPokemon] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -47,10 +48,10 @@ const GlobalState = ({ children }) => {
     setIsVisible(true);
   };
 
-  const details = async(pokemon, navigate) => {
-    console.log(pokemon)
+  const details = async(pokemon, navigate, params) => {
     try{
       const response = await axios.get(pokemon.url)
+      // `${BASE_URL}/`
       let newObj ={
         ...response.data,
         name:pokemon.name,
@@ -60,8 +61,8 @@ const GlobalState = ({ children }) => {
         images: pokemon.images,
         types: pokemon.types
       }
-      setDetaisPokemon(newObj)
-      navigate("/details");
+      setDetailsPokemon(newObj)
+      goToDetails(navigate, pokemon.id)
 
     }catch(erro){
       console.log(erro.response)
@@ -77,6 +78,7 @@ const GlobalState = ({ children }) => {
     removeFromPokedex,
     details,
     detailsPokemon,
+    setDetailsPokemon,
     isVisible,
     setIsVisible,
   };

@@ -12,7 +12,7 @@ import {
   } from "../../../components/Card/styled";
   import { typesOfPokemons } from "../../../constants/typesOfPokemons";
 import backgroundImage from "../../../assets/backgroundImagePokemon.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../../../contexts/GlobalContext";
 
@@ -24,6 +24,8 @@ export const PokedexCard = () => {
     const context = useContext(GlobalContext);
     const { pokedex,  details, removeFromPokedex } = context;
     const navigate = useNavigate();
+    const params = useParams()
+
     
     return (
         <>
@@ -49,7 +51,7 @@ export const PokedexCard = () => {
             </ContainerInfo>
 
             <ContainerBtn>
-              <StyledBtnDetails onClick={() => details(elem, navigate)}>
+              <StyledBtnDetails onClick={() => details(elem, navigate, params)}>
                 Detalhes
               </StyledBtnDetails>
 
