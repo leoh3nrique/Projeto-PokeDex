@@ -18,10 +18,10 @@ import { GlobalContext } from "../../contexts/GlobalContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { typesOfPokemons } from "../../constants/typesOfPokemons";
 import backgroundImage from "../../assets/backgroundImagePokemon.svg";
-import CatchPokemon from "../CatchPokemon/CatchPokemon";
 import { ColorBackground } from "../../constants/colorBackgrounds";
 
 const Card = ({ url, index }) => {
+  
   useEffect(() => {
     fetchPokemon();
   }, []);
@@ -31,7 +31,7 @@ const Card = ({ url, index }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const params = useParams()
+  const params = useParams();
 
   const [pokemon, setPokemon] = useState([]);
 
@@ -54,9 +54,9 @@ const Card = ({ url, index }) => {
         types: arrayTypes,
         url: url,
         images: response.data.sprites,
-        mainImage:response.data.sprites.other["official-artwork"].front_default,
-        backgroundColor: ColorBackground(response.data.types[0].type.name)
-        
+        mainImage:
+          response.data.sprites.other["official-artwork"].front_default,
+        backgroundColor: ColorBackground(response.data.types[0].type.name),
       });
       setPokemon(copiaPokemon);
     } catch (error) {
@@ -64,12 +64,15 @@ const Card = ({ url, index }) => {
     }
   };
 
-  console.log(pokemon)
   return (
     <>
       {pokemon.map((elem) => {
         return (
-          <StyledCard key={elem.id} background = {elem.backgroundColor} index={index}>
+          <StyledCard
+            key={elem.id}
+            background={elem.backgroundColor}
+            index={index}
+          >
             <ContainerInfo>
               <StyledInfo>
                 <StatsCard>
@@ -77,7 +80,7 @@ const Card = ({ url, index }) => {
                   <p>{elem.name}</p>
                 </StatsCard>
                 <StatsType>
-                  {elem.types.map((type,index) => {
+                  {elem.types.map((type, index) => {
                     return typesOfPokemons(type, index);
                   })}
                 </StatsType>

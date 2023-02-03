@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../constants/url";
+import { useSwitchPageContent } from "../hooks/useSwitchPageContent";
 import { goToDetails } from "../router/cordinator";
 import { GlobalContext } from "./GlobalContext";
 
@@ -9,14 +10,43 @@ const GlobalState = ({ children }) => {
   const [pokedex, setPokedex] = useState([]);
   const [detailsPokemon, setDetailsPokemon] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+  
 
+  const [initialValue, setInitialValue] = useState(0)
+  const [finalValue, setFinalValue] = useState(0)
+  const [go, setGo] = useState(false)
+  const [back, setBack] = useState(false)
+  
+  
+  const switchPage = () =>{
+    if(go){
+      setFinalValue(finalValue+21)
+      setGo(false)
+    }
+    if(back){
+      setFinalValue(finalValue-21)
+      if(finalValue === 0){
+        alert("Voce esta na primeira pagina!")
+        setFinalValue(0)
+      }
+      setBack(false)
+    }
+    setInitialValue(finalValue)
+
+
+  }
+  useEffect(()=>{
+    switchPage()
+  },[go,back])
+  
   useEffect(() => {
     getPokemons();
-  }, []);
+  }, [switchPage]);
+
 
   const getPokemons = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}?limit=21&offset=0`);
+      const response = await axios.get(`${BASE_URL}?limit=21&offset=${initialValue}`);
       setPokemons(response.data.results);
     } catch (error) {
       console.log("erro", error.response);
@@ -51,7 +81,6 @@ const GlobalState = ({ children }) => {
   const details = async(pokemon, navigate, params) => {
     try{
       const response = await axios.get(pokemon.url)
-      // `${BASE_URL}/`
       let newObj ={
         ...response.data,
         name:pokemon.name,
@@ -81,6 +110,8 @@ const GlobalState = ({ children }) => {
     setDetailsPokemon,
     isVisible,
     setIsVisible,
+    setGo,
+    setBack
   };
 
   return (

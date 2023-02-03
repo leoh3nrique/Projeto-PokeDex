@@ -1,4 +1,4 @@
-import { Div, DivVazia } from "./styled";
+import { StyledNotification, ContainerNotification } from "./styled";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { useLocation } from "react-router-dom";
@@ -10,20 +10,20 @@ export const CatchPokemon = () => {
 
   return (
     <>
-      <DivVazia onClick={() => setIsVisible(false)}>
+      <ContainerNotification onClick={() => setIsVisible(false)}>
         {location.pathname === "/" && (
-          <Div>
+          <StyledNotification>
             <h1>GOTCHA</h1>
             <p>O pokemon foi adicionado a sua Pokédex</p>
-          </Div>
+          </StyledNotification>
         )}
         {location.pathname === "/pokedex" && (
-          <Div>
+          <StyledNotification>
             <h1>Oh,no!</h1>
             <p>O pokemon foi removido da sua Pokédex</p>
-          </Div>
+          </StyledNotification>
         )}
-      </DivVazia>
+      </ContainerNotification>
     </>
   );
 };

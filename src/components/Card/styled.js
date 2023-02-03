@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//Estilizacao Container Card
 export const StyledCard = styled.div`
   width: 29.4vw;
   height: 210px;
@@ -8,12 +9,12 @@ export const StyledCard = styled.div`
   flex-direction: column;
   border-radius: 12px;
   padding: 4px;
-  @media (min-width: 320px) and (max-width: 480px){
-    width:90%;
-    
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 90%;
   }
 `;
 
+//Estilizacao Container de informacoes
 export const ContainerInfo = styled.div`
   width: 100%;
   display: flex;
@@ -24,12 +25,12 @@ export const StyledInfo = styled.div`
   width: 50%;
 `;
 
+//Estilizacao Container de Imagens
 export const ContainerImage = styled.div`
   background-image: url(${(props) => `${props.backgroundImage}`});
   background-position: center;
   background-position: absolute;
   width: 50%;
-
 `;
 
 export const StyledImage = styled.img`
@@ -37,14 +38,13 @@ export const StyledImage = styled.img`
   position: relative;
   top: -7.8vh;
   right: -0.6vw;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 40vw;
-    
-    
   }
-
-
 `;
+
+
+//Estilizacao Container De Informacoes Básicas
 export const StatsCard = styled.div`
   margin: 1.2vw 0.5vw;
   p {
@@ -60,6 +60,8 @@ export const StatsType = styled.div`
   width: 100%;
 `;
 
+
+//Estilizacao dos Botoes: Adicionar, Ir para os detalhes e remover
 export const ContainerBtn = styled.div`
   display: flex;
   justify-content: space-between;
@@ -85,22 +87,21 @@ export const StyledBtnCapture = styled.button`
   font-size: 16px;
   border: none;
   border-radius: 10px;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 30vw;
     height: 5vh;
   }
-  
 `;
 
 export const StyledBtnRemove = styled.button`
-  background-color: #ff6262; 
+  background-color: #ff6262;
   width: 9.7vw;
   height: 2.5vw;
   cursor: pointer;
   font-size: 16px;
   border: none;
   border-radius: 10px;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 30vw;
     height: 5vh;
   }

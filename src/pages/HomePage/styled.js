@@ -1,11 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import {device} from "../../constants/sizeOfDevices"
 
 export const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 16px;
   grid-row-gap: 45px;
+  min-height: 56.7vh;
 
   @media (max-width: 480px) {
     display: flex ;
@@ -59,7 +59,6 @@ export const StyledH1 = styled.h1`
   @media (max-width: 480px) {
     font-size: 30px;
     animation: ${animationMobile} 0.3s;
-    left: 8vw;
 
   }
 

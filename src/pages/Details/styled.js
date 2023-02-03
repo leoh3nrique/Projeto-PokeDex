@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
+//Estilizacao do Botao de remover, esta colocado manualmente no Header, mas pertence ao Container Principal
 export const StyledBtnRemove = styled.button`
   position: absolute;
   left: 74vw;
@@ -11,25 +12,33 @@ export const StyledBtnRemove = styled.button`
   color: white;
   background-color: #ff6262;
   cursor: pointer;
+  @media (min-width: 320px) and (max-width: 480px) {
+    position: absolute;
+    top: 49.5vh;
+    left: 65vw;
+    width: 30vw;
+    height: 5vh;
+  }
 `;
 
 
-
+//Estilizacao Container Principal
 export const ContainerDetails = styled.div`
   width: 100%;
-  height: 57vw;
+  height: 58vw;
   background-color: #5e5e5e;
   background-image: url(${(props) => `${props.backgroundImage}`});
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1000px;
-  border:.001px solid #5e5e5e;
-  @media (min-width: 320px) and (max-width: 480px){
-    height:323vw;
+  border: 0.001px solid #5e5e5e;
+  @media (min-width: 320px) and (max-width: 480px) {
+    min-height: 450vw;
   }
-  `;
+`;
 
-  const animation = keyframes`
+//Estilizacao Container de Detalhes
+const animationShowContainer = keyframes`
     from{
       transform: scale(0.3, 0.3);
 
@@ -38,7 +47,7 @@ export const ContainerDetails = styled.div`
       transform:translate(10px, 0%);
     }
   
-  `
+  `;
 
 export const ContainerDetailsPokemon = styled.div`
   width: 95%;
@@ -49,18 +58,19 @@ export const ContainerDetailsPokemon = styled.div`
   gap: 10px;
   border-radius: 24px;
   position: relative;
-  animation:${animation} .3s;
-  @media (min-width: 320px) and (max-width: 480px){
+  animation: ${animationShowContainer} 0.3s;
+  @media (min-width: 320px) and (max-width: 480px) {
     flex-direction: column;
     height: 90%;
   }
-
 `;
 
+
+//Estilizacao do Container de Imagens
 export const ContainerImages = styled.div`
-  height: 95vw;
+  height: 86vh;
   margin: 20px 25px;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     margin-top: 30vh;
   }
 `;
@@ -76,14 +86,14 @@ export const FrontImage = styled.div`
   img {
     width: 180px;
   }
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
     height: 50%;
   }
 `;
 export const BackImage = styled.div`
-  width:18.7vw;
-  height:18.7vw;
+  width: 18.7vw;
+  height: 18.7vw;
   background-color: white;
   border-radius: 8px;
   display: flex;
@@ -93,13 +103,15 @@ export const BackImage = styled.div`
   img {
     width: 180px;
   }
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
     height: 50%;
-    margin-top:20px ;
+    margin-top: 20px;
   }
 `;
 
+
+//Estilizacao dos Status do Pokemon
 export const ContainerBaseStats = styled.div`
   width: 23vw;
   height: 41vw;
@@ -119,16 +131,18 @@ export const ContainerBaseStats = styled.div`
   p {
     width: 70px;
     text-align: end;
+    text-transform: capitalize;
   }
   .baseStat {
     text-align: center;
   }
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 85%;
     height: 47.5vh;
   }
 `;
 
+//Estilizacao feita para definir a porcentagem de cada status do Pokemon, 
 export const DivPai = styled.div`
   width: 100px;
 `;
@@ -138,6 +152,8 @@ export const DivFilha = styled.div`
   height: 10px;
 `;
 
+
+//Container dos dados restantes
 export const ContainerOtherStats = styled.div`
   width: 50%;
   height: 41vw;
@@ -146,9 +162,9 @@ export const ContainerOtherStats = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: 900px;
-  @media (min-width: 320px) and (max-width: 480px){
-    width:85%;
-    margin-left:5vw;
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 85%;
+    margin-left: 5vw;
   }
 `;
 export const BasicStats = styled.div`
@@ -168,13 +184,15 @@ export const BasicStats = styled.div`
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 15px;
+    text-transform: capitalize;
   }
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     position: absolute;
     top: 0vh;
   }
 `;
 
+//Estilizacao da Imagem Principal
 export const MainImage = styled.div`
   img {
     width: 300px;
@@ -182,14 +200,16 @@ export const MainImage = styled.div`
   position: absolute;
   right: 50px;
   top: 250px;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     top: 0vh;
     right: 1.5vw;
-    img{
+    img {
       width: 35vw;
     }
   }
 `;
+
+//Estilizacao dos Status de Movimento
 export const MovesStats = styled.div`
   width: 20vw;
   height: 30.9vw;
@@ -204,8 +224,9 @@ export const MovesStats = styled.div`
     margin: 10px;
     border-radius: 15px;
     text-align: center;
+    text-transform: capitalize;
   }
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
     height: 40vh;
   }
