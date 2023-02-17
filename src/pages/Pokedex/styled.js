@@ -6,13 +6,33 @@ export const StyledPokedex = styled.div`
   grid-gap: 16px;
   grid-row-gap: 40px;
   min-height: 56.7vh;
-  @media (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 480px){
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 `;
+
+export const StyledEmptyPokedex = styled.div`
+  display: flex;
+  height: 20vh;
+  width: 35vw;
+  margin-left: 5vw;
+  padding: 5px;
+  align-items: center;
+  span{
+    font-size: 30px;
+    font: bold;
+    font-family: "Poppins";
+    color:white
+  }
+  @media (min-width: 320px) and (max-width: 480px){ 
+    flex-direction: column;
+    gap: 3vh;
+    height: 60vh;
+  }
+`
 export const ContainerPokedex = styled.div`
   background-color: #5e5e5e;
   width: 100%;

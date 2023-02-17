@@ -32,7 +32,8 @@ export const ContainerDetails = styled.div`
   background-size: 1000px;
   border: 0.001px solid #5e5e5e;
   @media (min-width: 320px) and (max-width: 480px) {
-    min-height: 450vw;
+    min-height: 475vw;
+    width: 100vw;
   }
 `;
 

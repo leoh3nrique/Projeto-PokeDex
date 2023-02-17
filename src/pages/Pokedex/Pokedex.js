@@ -1,23 +1,19 @@
 import Header from "../../components/Header/Header";
-import { useContext} from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import {
   ContainerPokedex,
   StyledHeaderAnimated,
   StyledPokedex,
 } from "./styled";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CatchPokemon from "../../components/CatchPokemon/CatchPokemon";
 import { PokedexCard } from "./components/PokedexCard";
-
+import { EmptyPokedex } from "./components/EmptyPokedex";
 const Pokedex = () => {
   const context = useContext(GlobalContext);
-  const {
-    captureAlert,
-    deleteAlert,
-  } = context;
+  const { captureAlert, deleteAlert, pokedex } = context;
   const location = useLocation();
-
   return (
     <>
       <Header />
@@ -28,7 +24,12 @@ const Pokedex = () => {
           <StyledHeaderAnimated>Meus Pokémons</StyledHeaderAnimated>
         )}
         <StyledPokedex>
-          <PokedexCard />
+          {Object.values(pokedex).length === 0 ? (
+            <EmptyPokedex/>
+            
+          ) : (
+            <PokedexCard />
+          )}
         </StyledPokedex>
       </ContainerPokedex>
     </>
