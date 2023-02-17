@@ -1,27 +1,29 @@
 import Header from "../../components/Header/Header";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import {
   ContainerPokedex,
   StyledHeaderAnimated,
   StyledPokedex,
 } from "./styled";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import CatchPokemon from "../../components/CatchPokemon/CatchPokemon";
 import { PokedexCard } from "./components/PokedexCard";
 
 const Pokedex = () => {
   const context = useContext(GlobalContext);
-  const { pokedex, isVisible, details, removeFromPokedex } = context;
+  const {
+    captureAlert,
+    deleteAlert,
+  } = context;
   const location = useLocation();
-  const navigate = useNavigate();
 
-  
   return (
     <>
       <Header />
       <ContainerPokedex>
-        {isVisible && <CatchPokemon />}
+        {deleteAlert && <CatchPokemon />}
+        {captureAlert && <CatchPokemon />}
         {location.pathname === "/pokedex" && (
           <StyledHeaderAnimated>Meus Pokémons</StyledHeaderAnimated>
         )}

@@ -21,7 +21,6 @@ import backgroundImage from "../../assets/backgroundImagePokemon.svg";
 import { ColorBackground } from "../../constants/colorBackgrounds";
 
 const Card = ({ url, index }) => {
-  
   useEffect(() => {
     fetchPokemon();
   }, []);
@@ -54,8 +53,7 @@ const Card = ({ url, index }) => {
         types: arrayTypes,
         url: url,
         images: response.data.sprites,
-        mainImage:
-          response.data.sprites.other["official-artwork"].front_default,
+        mainImage:response.data.sprites.other["official-artwork"].front_default,
         backgroundColor: ColorBackground(response.data.types[0].type.name),
       });
       setPokemon(copiaPokemon);

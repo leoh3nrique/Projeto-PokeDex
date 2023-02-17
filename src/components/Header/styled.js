@@ -1,6 +1,8 @@
 import styled, { keyframes } from "styled-components";
 
 
+
+
 const animationBtnPokedex = keyframes`
   from{
     left: 30vw;
@@ -12,7 +14,6 @@ const animationBtnPokedex = keyframes`
   }
 
 `
-
 const animationBtnHomeMobile = keyframes`
   from{
     display: none;
@@ -24,7 +25,6 @@ const animationBtnHomeMobile = keyframes`
 
 `
 
-
 const animationBtnHome = keyframes`
     from{
         top: 22vh;
@@ -35,6 +35,7 @@ const animationBtnHome = keyframes`
     }
 
 `;
+
 
 
 
@@ -50,6 +51,8 @@ export const StyledHeader = styled.header`
     max-width: 480px;
     width: 100vw;
   }
+
+
 `;
 
 //Estilizacao Button Pokedex

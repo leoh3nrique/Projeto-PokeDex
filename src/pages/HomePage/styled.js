@@ -17,6 +17,11 @@ export const StyledContainer = styled.div`
 
 `;
 
+
+
+
+
+
 const animation = keyframes`
     from{
         top:-20vh;
@@ -62,9 +67,7 @@ export const StyledH1 = styled.h1`
 
   }
 
-
 `;
-
 
 export const MainContainer = styled.div`
   background-color: #5e5e5e;

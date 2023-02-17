@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 //Estilizacao do Botao de remover, esta colocado manualmente no Header, mas pertence ao Container Principal
-export const StyledBtnRemove = styled.button`
+export const StyledBtn = styled.button`
   position: absolute;
   left: 74vw;
   top: 48px;
@@ -10,7 +10,7 @@ export const StyledBtnRemove = styled.button`
   border: none;
   border-radius: 8px;
   color: white;
-  background-color: #ff6262;
+  background-color: ${(props) => props.color};
   cursor: pointer;
   @media (min-width: 320px) and (max-width: 480px) {
     position: absolute;
@@ -20,7 +20,6 @@ export const StyledBtnRemove = styled.button`
     height: 5vh;
   }
 `;
-
 
 //Estilizacao Container Principal
 export const ContainerDetails = styled.div`
@@ -64,7 +63,6 @@ export const ContainerDetailsPokemon = styled.div`
     height: 90%;
   }
 `;
-
 
 //Estilizacao do Container de Imagens
 export const ContainerImages = styled.div`
@@ -110,7 +108,6 @@ export const BackImage = styled.div`
   }
 `;
 
-
 //Estilizacao dos Status do Pokemon
 export const ContainerBaseStats = styled.div`
   width: 23vw;
@@ -142,7 +139,7 @@ export const ContainerBaseStats = styled.div`
   }
 `;
 
-//Estilizacao feita para definir a porcentagem de cada status do Pokemon, 
+//Estilizacao feita para definir a porcentagem de cada status do Pokemon,
 export const DivPai = styled.div`
   width: 100px;
 `;
@@ -151,7 +148,6 @@ export const DivFilha = styled.div`
   width: ${(props) => `${props.width}%`};
   height: 10px;
 `;
-
 
 //Container dos dados restantes
 export const ContainerOtherStats = styled.div`
@@ -167,7 +163,7 @@ export const ContainerOtherStats = styled.div`
     margin-left: 5vw;
   }
 `;
-export const BasicStats = styled.div`
+export const ContainerBasicStats = styled.div`
   width: 23vw;
   height: 10vw;
   .pokemonId {
@@ -199,7 +195,7 @@ export const MainImage = styled.div`
   }
   position: absolute;
   right: 50px;
-  top: 250px;
+  top: 0px;
   @media (min-width: 320px) and (max-width: 480px) {
     top: 0vh;
     right: 1.5vw;
@@ -210,7 +206,7 @@ export const MainImage = styled.div`
 `;
 
 //Estilizacao dos Status de Movimento
-export const MovesStats = styled.div`
+export const ContainerMovesStats = styled.div`
   width: 20vw;
   height: 30.9vw;
   background-color: white;

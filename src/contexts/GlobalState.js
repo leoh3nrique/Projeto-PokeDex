@@ -1,58 +1,67 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../constants/url";
-import { useSwitchPageContent } from "../hooks/useSwitchPageContent";
 import { goToDetails } from "../router/cordinator";
 import { GlobalContext } from "./GlobalContext";
 
 const GlobalState = ({ children }) => {
   const [pokemons, setPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [detailsPokemon, setDetailsPokemon] = useState([]);
+
   const [isVisible, setIsVisible] = useState(false);
-  
 
-  const [initialValue, setInitialValue] = useState(0)
-  const [finalValue, setFinalValue] = useState(0)
-  const [go, setGo] = useState(false)
-  const [back, setBack] = useState(false)
-  
-  
-  const switchPage = () =>{
-    if(go){
-      setFinalValue(finalValue+21)
-      setGo(false)
+  const [captureAlert, setCaptureAlert] = useState(false);
+  const [deleteAlert, setDeleteAlert] = useState(false);
+
+  const [initialValue, setInitialValue] = useState(0);
+  const [finalValue, setFinalValue] = useState(0);
+
+  const [swap, setSwap] = useState("");
+  const [page, setPage] = useState(1);
+
+
+  //Função feita para mudar os pokemons, trocando os valores da url, fazendo que a requisição ocorra novamente e renderize novos pokemons
+  const switchPage = () => {
+    if (swap === "right") {
+      setFinalValue(finalValue + 21);
+      setPage(page + 1);
+      setSwap("");
     }
-    if(back){
-      setFinalValue(finalValue-21)
-      if(finalValue === 0){
-        alert("Voce esta na primeira pagina!")
-        setFinalValue(0)
+    if (swap === "left") {
+      setFinalValue(finalValue - 21);
+      setPage(page - 1);
+      if (finalValue === 0) {
+        alert("Voce esta na primeira pagina!");
+        setPage(1);
+        setFinalValue(0);
       }
-      setBack(false)
+      setSwap("");
     }
-    setInitialValue(finalValue)
+    setInitialValue(finalValue);
+  };
 
+  useEffect(() => {
+    switchPage();
+  }, [swap]);
 
-  }
-  useEffect(()=>{
-    switchPage()
-  },[go,back])
-  
   useEffect(() => {
     getPokemons();
   }, [switchPage]);
 
-
+  //pega todos pokemons da API
   const getPokemons = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}?limit=21&offset=${initialValue}`);
+      const response = await axios.get(
+        `${BASE_URL}?limit=21&offset=${initialValue}`
+      );
       setPokemons(response.data.results);
     } catch (error) {
       console.log("erro", error.response);
     }
   };
 
+
+  //adicionar o pokemon que vem como parametro na pokedex
   const addToPokedex = (pokemon) => {
     const copyPokedex = [...pokedex];
 
@@ -66,9 +75,10 @@ const GlobalState = ({ children }) => {
       copyPokedex.push(newObj);
     }
     setPokedex(copyPokedex);
-    setIsVisible(true);
+    setCaptureAlert(true);
   };
 
+  //remove o pokemon que vem como parametro da pokedex
   const removeFromPokedex = (pokemon) => {
     const pokedexCopy = [...pokedex];
     const filter = pokedexCopy.filter(
@@ -76,28 +86,12 @@ const GlobalState = ({ children }) => {
     );
     setPokedex(filter);
     setIsVisible(true);
+    setDeleteAlert(true);
   };
 
-  const details = async(pokemon, navigate, params) => {
-    try{
-      const response = await axios.get(pokemon.url)
-      let newObj ={
-        ...response.data,
-        name:pokemon.name,
-        background: pokemon.backgroundColor,
-        id:pokemon.id,
-        mainImage: pokemon.mainImage,
-        images: pokemon.images,
-        types: pokemon.types
-      }
-      setDetailsPokemon(newObj)
-      goToDetails(navigate, pokemon.id)
-
-    }catch(erro){
-      console.log(erro.response)
-    }    
-
-
+  //vai para a pagina de detalhes, id do pokemon é passado como path params
+  const details = async (pokemon, navigate) => {
+    goToDetails(navigate, pokemon.id); 
   };
 
   const data = {
@@ -106,12 +100,13 @@ const GlobalState = ({ children }) => {
     addToPokedex,
     removeFromPokedex,
     details,
-    detailsPokemon,
-    setDetailsPokemon,
-    isVisible,
-    setIsVisible,
-    setGo,
-    setBack
+    captureAlert,
+    setCaptureAlert,
+    deleteAlert,
+    setDeleteAlert,
+    page,
+    swap,
+    setSwap,
   };
 
   return (

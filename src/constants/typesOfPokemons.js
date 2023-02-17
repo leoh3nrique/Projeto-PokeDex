@@ -18,27 +18,22 @@ import rock from "../assets/type/rock.svg";
 import steel from "../assets/type/steel.svg";
 
 export const typesOfPokemons = (type, index) => {
+  //ele recebe o tipo do pokemon, e de acordo com o tipo ele retorna a imagem ja estilizada do tipo em si
   switch (type) {
     case "poison":
       return <img key={index} src={poison} alt="poison" />;
-
     case "grass":
       return <img key={index} src={grass} alt="grass" />;
-
     case "fire":
       return <img key={index} src={fire} alt="fire" />;
     case "water":
       return <img key={index} src={water} alt="water" />;
-
     case "bug":
       return <img key={index} src={bug} alt="bug" />;
-
     case "flying":
       return <img key={index} src={flying} alt="flying" />;
-
     case "normal":
       return <img key={index} src={normal} alt="normal" />;
-
     case "dark":
       return <img key={index} src={dark} alt="dark" />;
     case "dragon":

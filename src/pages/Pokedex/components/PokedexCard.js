@@ -1,37 +1,32 @@
 import {
-    ContainerImage,
-    ContainerInfo,
-    StyledCard,
-    StyledImage,
-    StyledInfo,
-    StatsCard,
-    StatsType,
-    ContainerBtn,
-    StyledBtnDetails,
-    StyledBtnRemove,
-  } from "../../../components/Card/styled";
-  import { typesOfPokemons } from "../../../constants/typesOfPokemons";
+  ContainerImage,
+  ContainerInfo,
+  StyledCard,
+  StyledImage,
+  StyledInfo,
+  StatsCard,
+  StatsType,
+  ContainerBtn,
+  StyledBtnDetails,
+  StyledBtnRemove,
+} from "../../../components/Card/styled";
+import { typesOfPokemons } from "../../../constants/typesOfPokemons";
 import backgroundImage from "../../../assets/backgroundImagePokemon.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../../../contexts/GlobalContext";
 
-  
-  
-
-
 export const PokedexCard = () => {
-    const context = useContext(GlobalContext);
-    const { pokedex,  details, removeFromPokedex } = context;
-    const navigate = useNavigate();
-    const params = useParams()
+  const context = useContext(GlobalContext);
+  const { pokedex, details, removeFromPokedex } = context;
+  const navigate = useNavigate();
+  const params = useParams();
 
-    
-    return (
-        <>
+  return (
+    <>
       {pokedex.map((elem) => {
         return (
-          <StyledCard key={elem.id} background = {elem.backgroundColor} >
+          <StyledCard key={elem.id} background={elem.backgroundColor}>
             <ContainerInfo>
               <StyledInfo>
                 <StatsCard>

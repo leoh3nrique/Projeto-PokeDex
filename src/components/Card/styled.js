@@ -43,7 +43,6 @@ export const StyledImage = styled.img`
   }
 `;
 
-
 //Estilizacao Container De Informacoes Básicas
 export const StatsCard = styled.div`
   margin: 1.2vw 0.5vw;
@@ -59,7 +58,6 @@ export const StatsCard = styled.div`
 export const StatsType = styled.div`
   width: 100%;
 `;
-
 
 //Estilizacao dos Botoes: Adicionar, Ir para os detalhes e remover
 export const ContainerBtn = styled.div`
@@ -95,6 +93,7 @@ export const StyledBtnCapture = styled.button`
 
 export const StyledBtnRemove = styled.button`
   background-color: #ff6262;
+  color: white;
   width: 9.7vw;
   height: 2.5vw;
   cursor: pointer;

@@ -2,43 +2,50 @@ import Header from "../../components/Header/Header";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import {
-  BackImage,
-  BasicStats,
-  ContainerBaseStats,
   ContainerDetails,
   ContainerDetailsPokemon,
-  ContainerImages,
   ContainerOtherStats,
-  DivFilha,
-  DivPai,
-  FrontImage,
   MainImage,
-  MovesStats,
-  StyledBtnRemove,
+  StyledBtn,
 } from "./styled";
 import backgroundImage from "../../assets/backgroundImagePokemon.svg";
-import { typesOfPokemons } from "../../constants/typesOfPokemons";
 import { StyledH1 } from "../HomePage/styled";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import { ColorBackground } from "../../constants/colorBackgrounds";
+import { Images } from "./components/Images";
+import { BaseStats } from "./components/BaseStats";
+import { BasicStats } from "./components/BasicStats";
+import { MovesStats } from "./components/MovesStats";
+import CatchPokemon from "../../components/CatchPokemon/CatchPokemon";
 
 const Details = () => {
   useEffect(() => {
-    fetchPokemon();
+    fetchDetailsPokemon();
   }, []);
 
+  const context = useContext(GlobalContext);
+  const {
+    pokedex,
+    addToPokedex,
+    removeFromPokedex,
+    captureAlert,
+    deleteAlert,
+  } = context;
+
+  //é feita uma nova requisição com o id (que é pego do path params) e a url base, trazendo todas as informações do pokemon
+  
+  const [detailsPokemon, setDetailsPokemon] = useState([]);
   const params = useParams();
 
-  const [detailsPokemon, setDetailsPokemon] = useState([]);
-
-  const fetchPokemon = async () => {
+  const fetchDetailsPokemon = async () => {
     const copiaPokemon = [];
     const arrayTypes = [];
     try {
       const response = await axios.get(`${BASE_URL}/${params.id}/`);
       const types = response.data.types;
+      //ele percorre os tipos do pokemon e adiciona no arrayTypes, trazendo uma maior facilidade na hora de renderizar esses tipos do pokemon
       for (let i in types) {
         let getTypes = types[i].type.name;
         arrayTypes.push(getTypes);
@@ -52,9 +59,8 @@ const Details = () => {
         id: response.data.id,
         types: arrayTypes,
         images: response.data.sprites,
-        mainImage:
-          response.data.sprites.other["official-artwork"].front_default,
-        backgroundColor: ColorBackground(response.data.types[0].type.name),
+        mainImage:response.data.sprites.other["official-artwork"].front_default,
+        backgroundColor: ColorBackground(response.data.types[0].type.name), //constante feita pra trazer a cor certa do background
       });
       setDetailsPokemon(copiaPokemon);
     } catch (error) {
@@ -64,62 +70,40 @@ const Details = () => {
 
   return (
     <>
-      {detailsPokemon.map((elem,index) => {
+      {captureAlert && <CatchPokemon />}
+      {deleteAlert && <CatchPokemon />}
+
+      {detailsPokemon.map((elem, index) => {
         return (
           <div key={index}>
             <Header />
-            <StyledBtnRemove>Remove</StyledBtnRemove>
+            {pokedex.find((pk) => pk.name === elem.name) === undefined ? (
+              <StyledBtn color={"#33a4f5"} onClick={() => addToPokedex(elem)}>
+                Adicionar
+              </StyledBtn>
+            ) : (
+              <StyledBtn
+                color={"#ff6262"}
+                onClick={() => removeFromPokedex(elem)}
+              >
+                Remover
+              </StyledBtn>
+            )}
+
             <ContainerDetails backgroundImage={backgroundImage}>
               <StyledH1>Detalhes</StyledH1>
               <ContainerDetailsPokemon backgroundColor={elem.backgroundColor}>
-                <ContainerImages>
-                  <FrontImage>
-                    <img
-                      src={elem.sprites.front_default}
-                      alt="Front of pokemon "
-                    />
-                  </FrontImage>
-                  <BackImage>
-                    <img
-                      src={elem.sprites.back_default}
-                      alt="Back of pokemon"
-                    />
-                  </BackImage>
-                </ContainerImages>
-                <ContainerBaseStats>
-                  <h3>BaseStats</h3>
-                  {elem.stats.map((elem) => {
-                    return (
-                      <div className="stats">
-                        <p>{elem.stat.name}</p>
-                        <p className="baseStat">{elem.base_stat}</p>
-                        <DivPai>
-                          <DivFilha width={elem.base_stat}></DivFilha>
-                        </DivPai>
-                      </div>
-                    );
-                  })}
-                </ContainerBaseStats>
+                <Images
+                  front={elem.sprites.front_default}
+                  back={elem.sprites.back_default}
+                />
+                <BaseStats pokemon={elem} />
                 <ContainerOtherStats backgroundImage={backgroundImage}>
-                  <BasicStats>
-                    <p className="pokemonId">#{elem.id}</p>
-                    <p className="pokemonName">{elem.name}</p>
-
-                    {elem.types.map((elem, index) => {
-                      return typesOfPokemons(elem, index);
-                    })}
-                  </BasicStats>
+                  <BasicStats pokemon={elem} />
                   <MainImage>
                     <img src={elem.mainImage} alt="Main Pokemon" />
                   </MainImage>
-                  <MovesStats>
-                    <h3>Moves</h3>
-                    <p>{elem.moves[0].move.name}</p>
-                    <p>{elem.moves[1].move.name}</p>
-                    <p>{elem.moves[2].move.name}</p>
-                    <p>{elem.moves[3].move.name}</p>
-                    <p>{elem.moves[4].move.name}</p>
-                  </MovesStats>
+                  <MovesStats pokemon={elem} />
                 </ContainerOtherStats>
               </ContainerDetailsPokemon>
             </ContainerDetails>

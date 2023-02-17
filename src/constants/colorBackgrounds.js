@@ -1,6 +1,6 @@
 
-
 export const ColorBackground = (type) =>{
+    //recebe o tipo de pokemon, e de acordo com o tipo, ele retorna a cor certa 
     let color =""
     switch (type) {
         case "grass":
@@ -37,7 +37,6 @@ export const ColorBackground = (type) =>{
           return color = "#D3D0D0"
         case "dark":
           return color = "#776F7F"
-    
         default:
           break;
       }
