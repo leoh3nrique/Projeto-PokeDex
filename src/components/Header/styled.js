@@ -1,8 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-
-
-
 const animationBtnPokedex = keyframes`
   from{
     left: 30vw;
@@ -13,7 +10,7 @@ const animationBtnPokedex = keyframes`
 
   }
 
-`
+`;
 const animationBtnHomeMobile = keyframes`
   from{
     display: none;
@@ -23,7 +20,7 @@ const animationBtnHomeMobile = keyframes`
     left: 1.4vw ;
   }
 
-`
+`;
 
 const animationBtnHome = keyframes`
     from{
@@ -36,23 +33,18 @@ const animationBtnHome = keyframes`
 
 `;
 
-
-
-
 //Estilização Container Header
 export const StyledHeader = styled.header`
   height: 22vh;
   display: flex;
   align-items: center;
   width: 100%;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     flex-direction: column;
     height: 40vh;
     max-width: 480px;
     width: 100vw;
   }
-
-
 `;
 
 //Estilizacao Button Pokedex
@@ -68,15 +60,14 @@ export const StyledBtnPokedex = styled.button`
   cursor: pointer;
   position: relative;
   left: 74vw;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     left: -3vw;
     top: 27vh;
     width: 250px;
     height: 60px;
-    animation: ${animationBtnPokedex} 0.4s;  
+    animation: ${animationBtnPokedex} 0.4s;
   }
 `;
-
 
 //Estilizacao Button Home
 
@@ -97,25 +88,20 @@ export const StyledBtnHome = styled.button`
     top: 30vh;
     left: 1.4vw;
     animation: ${animationBtnHomeMobile} 0.4s;
-
   }
-
 `;
-
-
 
 //Estilizacao Logo
 export const ContainerLogo = styled.figure`
   position: absolute;
   left: 37vw;
-  @media (min-width: 320px) and (max-width: 480px){
+  @media (min-width: 320px) and (max-width: 480px) {
     position: absolute;
-    left: 14vw;
+    left: 8vw;
+    top: 3vh;
   }
-  
-  `;
+`;
 
-  export const StyledImage = styled.img`
-    width: 307px;
-  `;
-
+export const StyledImage = styled.img`
+  width: 307px;
+`;

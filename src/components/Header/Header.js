@@ -15,7 +15,6 @@ const Header = () => {
   const location = useLocation();
   const params = useParams();
 
-  
   return (
     <StyledHeader>
       {location.pathname === "/pokedex" && (
